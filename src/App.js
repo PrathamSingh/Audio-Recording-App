@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Question from "./components/Question";
+import EndScreen from "./components/EndScreen";
+import AudioRecordingVisualizer from "./components/AudioRecordingVisualizer";
+import "./App.css";
 
-function App() {
+const App = () => {
+  const [audioFiles, setAudioFiles] = useState([]);
+
+  const handleAnswerSubmit = (audioData) => {
+    setAudioFiles([...audioFiles, audioData]);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {audioFiles.length < 2 ? (
+        <Question
+          questionNumber={audioFiles.length + 1}
+          onAnswerSubmit={handleAnswerSubmit}
+        />
+      ) : (
+        <EndScreen audioFiles={audioFiles} />
+      )}
+
+      {audioFiles.length > 0 && (
+        <AudioRecordingVisualizer audioData={audioFiles[audioFiles.length - 1]} />
+      )}
     </div>
   );
-}
+};
 
 export default App;
