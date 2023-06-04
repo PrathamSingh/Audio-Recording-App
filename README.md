@@ -4,7 +4,7 @@ This is a simple React app that record audio response from the user and and subm
 
 ## Live Demo
 
-A [live demo](http://example.com/ "Optional Title") here.
+A [live demo](https://audio-recording-app.netlify.app/ "Optional Title") here.
 
 ## Getting Started
 
